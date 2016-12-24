@@ -9,7 +9,7 @@ public class SimpleController : MonoBehaviour
 	Vector3 vel;
 	bool[] restrictAxis = new bool[3] { false, false, false };
 	public enum Direction { Forward, Backward };
-	Direction restrictDir;
+	Direction[] restrictDirs = new Direction[3];
 
 	void Start()
 	{
@@ -24,30 +24,30 @@ public class SimpleController : MonoBehaviour
 		{
 			if (restrictAxis[i])
 			{
-				if (restrictDir == Direction.Forward) vel[i] = vel[i] > 0 ? 0 : vel[i];
-				if (restrictDir == Direction.Backward) vel[i] = vel[i] < 0 ? 0 : vel[i];
+				if (restrictDirs[i] == Direction.Forward) vel[i] = vel[i] > 0 ? 0 : vel[i];
+				if (restrictDirs[i] == Direction.Backward) vel[i] = vel[i] < 0 ? 0 : vel[i];
 			}
 		}
 
 		transform.position += vel * speed * Time.deltaTime;
 	}
 
-	public void RestrictX(bool doRestriction)
+	public void Restrict(int axis, bool doRestriction, Direction restrictDir)
 	{
-		restrictAxis[0] = doRestriction;
-	}
-
-	public void RestrictZ(bool doRestriction, Direction restrictDir)
-	{
-		restrictAxis[2] = doRestriction;
-		this.restrictDir = restrictDir;
+		restrictAxis[axis] = doRestriction;
+		this.restrictDirs[axis] = restrictDir;
 	}
 
 	public float x { get { return transform.position.x; } }
 	public float z { get { return transform.position.z; } }
 
+	public Vector3 Vel { get { return vel; } }
+
 	public float GetX { get { return col.bounds.max.x + (speed * Time.deltaTime); } }
 	public float GetMinX { get { return col.bounds.min.x - (speed * Time.deltaTime); } }
 	public float GetZ { get { return col.bounds.max.z + (speed * Time.deltaTime); } }
 	public float GetMinZ { get { return col.bounds.min.z - (speed * Time.deltaTime); } }
+
+	public bool zRestricted { get { return restrictAxis[2]; } }
+	public bool xRestricted { get { return restrictAxis[0]; } }
 }
