@@ -16,14 +16,14 @@ public class SimpleController : MonoBehaviour
 	void Update()
 	{
 		vel = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-		vel *= (speed * Time.deltaTime);
+		vel = vel.normalized * speed * Time.deltaTime;
 		transform.position += vel;
 	}
 
-	public void SetZ(float z)
+	public void SetPos(int axis, float pos)
 	{
 		Vector3 newPos = transform.position;
-		newPos.z = z;
+		newPos[axis] = pos;
 		transform.position = newPos;
 	}
 

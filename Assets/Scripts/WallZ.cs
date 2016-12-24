@@ -6,62 +6,62 @@ public class WallZ : MonoBehaviour
 {
 	SimpleController player;
 	[SerializeField] bool inFront;
+	enum Axis { X, Y, Z };
+	[SerializeField] Axis axis;
+	[SerializeField] float cornerSize;
+
+	delegate bool IsPositioned(int a);
+	delegate float GetPos(int a);
+	IsPositioned isPositioned;
+	GetPos getPos;
 
 	void Start()
 	{
 		player = GameObject.FindWithTag("Player").GetComponent<SimpleController>();
-		Vector3 meep = transform.position;
-		meep.x = transform.position.x + transform.localScale.x/2;
-		GameObject.Find("Dude").transform.position = meep;
+		transform.position += -transform.forward * cornerSize;
+
+		if (inFront) {
+			isPositioned = IsInFront;
+			getPos = GetInFrontPos;
+		} else {
+			isPositioned = IsBehind;
+			getPos = GetBehindPos;
+		}
 	}
 	
 	void LateUpdate()	// must set player position on a late update -- 
 						// this way it happens AFTER their input goes through
 	{
-		bool checkPos = false;
-
-		if (inFront)
-			checkPos = IsInFrontZ();
-		else
-			checkPos = IsBehindZ();
-
-		if (WithinX() && checkPos)        // function pointer for InFrontZ -- BehindZ
+		if (IsWithin(Mathf.Abs((int)axis-2)) && isPositioned((int)axis))
 		{
-			float setZ = 0;
-
-			if (inFront)
-				setZ = GetInFrontPosZ();
-			else
-				setZ = GetBehindPosZ();
-
-			player.SetZ(setZ);
+			player.SetPos((int)axis, getPos((int)axis));
 		}
 	}
 
-	bool WithinX()
+	bool IsWithin(int a)
 	{
-		float min = transform.position.x - transform.localScale.x / 2;
-		float max = transform.position.x + transform.localScale.x / 2;
-		return (player.GetMax.x > min) && (player.GetMin.x < max);
+		float min = transform.position[a] - transform.lossyScale.x / 2;
+		float max = transform.position[a] + transform.lossyScale.x / 2;
+		return (player.GetMax[a] > min) && (player.GetMin[a] < max);
 	}
 
-	bool IsInFrontZ()
+	bool IsInFront(int a)
 	{
-		return (player.GetMax.z > transform.position.z && player.GetMin.z < transform.position.z);
+		return (player.GetMax[a] > transform.position[a] && player.GetMin[a] < transform.position[a]);
 	}
 
-	bool IsBehindZ()
+	bool IsBehind(int a)
 	{
-		return (player.GetMin.z < transform.position.z && player.GetMax.z > transform.position.z);
+		return (player.GetMin[a] < transform.position[a] && player.GetMax[a] > transform.position[a]);
 	}
 
-	float GetInFrontPosZ()
+	float GetInFrontPos(int a)
 	{
-		return transform.position.z - player.GetExtents.z;
+		return transform.position[a] - player.GetExtents[a];
 	}
 
-	float GetBehindPosZ()
+	float GetBehindPos(int a)
 	{
-		return transform.position.z + player.GetExtents.z;
+		return transform.position[a] + player.GetExtents[a];
 	}
 }
