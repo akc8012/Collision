@@ -15,53 +15,53 @@ public class WallZ : MonoBehaviour
 		GameObject.Find("Dude").transform.position = meep;
 	}
 	
-	void Update()
+	void LateUpdate()	// must set player position on a late update -- 
+						// this way it happens AFTER their input goes through
 	{
-		float min = transform.position.x - transform.localScale.x/2;
-		float max = transform.position.x + transform.localScale.x/2;
-
 		bool checkPos = false;
 
 		if (inFront)
-			checkPos = InFrontZ();
+			checkPos = IsInFrontZ();
 		else
-			checkPos = BehindZ();
+			checkPos = IsBehindZ();
 
-		if (WithinX(min, max) && checkPos)        // function pointer for InFrontZ -- BehindZ
+		if (WithinX() && checkPos)        // function pointer for InFrontZ -- BehindZ
 		{
 			float setZ = 0;
 
 			if (inFront)
-				setZ = InFrontPosZ();
+				setZ = GetInFrontPosZ();
 			else
-				setZ = BehindPosZ();
+				setZ = GetBehindPosZ();
 
 			player.SetZ(setZ);
 		}
 	}
 
-	bool WithinX(float min, float max)
+	bool WithinX()
 	{
-		return (player.GetX > min) && (player.GetMinX < max);
+		float min = transform.position.x - transform.localScale.x / 2;
+		float max = transform.position.x + transform.localScale.x / 2;
+		return (player.GetMax.x > min) && (player.GetMin.x < max);
 	}
 
-	bool InFrontZ()
+	bool IsInFrontZ()
 	{
-		return (player.GetZ > transform.position.z && player.GetMinZ < transform.position.z);
+		return (player.GetMax.z > transform.position.z && player.GetMin.z < transform.position.z);
 	}
 
-	bool BehindZ()
+	bool IsBehindZ()
 	{
-		return (player.GetMinZ < transform.position.z && player.GetZ > transform.position.z);
+		return (player.GetMin.z < transform.position.z && player.GetMax.z > transform.position.z);
 	}
 
-	float InFrontPosZ()
+	float GetInFrontPosZ()
 	{
-		return transform.position.z - player.Extents.z;
+		return transform.position.z - player.GetExtents.z;
 	}
 
-	float BehindPosZ()
+	float GetBehindPosZ()
 	{
-		return transform.position.z + player.Extents.z;
+		return transform.position.z + player.GetExtents.z;
 	}
 }

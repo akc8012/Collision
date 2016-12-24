@@ -102,7 +102,6 @@ GameObject:
   - component: {fileID: 158054601}
   - component: {fileID: 158054600}
   - component: {fileID: 158054599}
-  - component: {fileID: 158054603}
   m_Layer: 0
   m_Name: Pillar (3)
   m_TagString: Untagged
@@ -173,19 +172,6 @@ Transform:
   m_Father: {fileID: 1798930671}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &158054603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 158054598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0967f31c6d45c114e83e4ccd8d45c331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 0}
-  max: {fileID: 0}
 --- !u!1 &177033520
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +294,6 @@ GameObject:
   - component: {fileID: 681550427}
   - component: {fileID: 681550426}
   - component: {fileID: 681550425}
-  - component: {fileID: 681550429}
   m_Layer: 0
   m_Name: Pillar (2)
   m_TagString: Untagged
@@ -379,19 +364,6 @@ Transform:
   m_Father: {fileID: 1798930671}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &681550429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 681550424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0967f31c6d45c114e83e4ccd8d45c331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 0}
-  max: {fileID: 0}
 --- !u!1 &937963982
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +537,6 @@ GameObject:
   - component: {fileID: 1056592032}
   - component: {fileID: 1056592031}
   - component: {fileID: 1056592030}
-  - component: {fileID: 1056592034}
   m_Layer: 0
   m_Name: Pillar (1)
   m_TagString: Untagged
@@ -636,19 +607,6 @@ Transform:
   m_Father: {fileID: 1798930671}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1056592034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1056592029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0967f31c6d45c114e83e4ccd8d45c331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min: {fileID: 0}
-  max: {fileID: 0}
 --- !u!1 &1121964510
 GameObject:
   m_ObjectHideFlags: 0
