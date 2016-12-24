@@ -10,8 +10,10 @@ public class WallZ : MonoBehaviour
 	[SerializeField] Axis axis;
 	[SerializeField] float cornerSize;
 
+	delegate bool IsWithin(int a);
 	delegate bool IsPositioned(int a);
 	delegate float GetPos(int a);
+	IsWithin isWithin;
 	IsPositioned isPositioned;
 	GetPos getPos;
 
@@ -19,6 +21,11 @@ public class WallZ : MonoBehaviour
 	{
 		player = GameObject.FindWithTag("Player").GetComponent<SimpleController>();
 		transform.position += -transform.forward * cornerSize;
+
+		if (axis == Axis.Y)
+			isWithin = IsWithinY;
+		else
+			isWithin = IsWithinXZ;
 
 		if (inFront) {
 			isPositioned = IsInFront;
@@ -32,17 +39,36 @@ public class WallZ : MonoBehaviour
 	void LateUpdate()	// must set player position on a late update -- 
 						// this way it happens AFTER their input goes through
 	{
-		if (IsWithin(Mathf.Abs((int)axis-2)) && isPositioned((int)axis))
+		if (isWithin(Mathf.Abs((int)axis-2)) && isPositioned((int)axis))
 		{
 			player.SetPos((int)axis, getPos((int)axis));
 		}
 	}
 
-	bool IsWithin(int a)
+	bool IsWithinXZ(int a)
 	{
 		float min = transform.position[a] - transform.lossyScale.x / 2;
 		float max = transform.position[a] + transform.lossyScale.x / 2;
-		return (player.GetMax[a] > min) && (player.GetMin[a] < max);
+		bool withinSentA = (player.GetMax[a] > min) && (player.GetMin[a] < max);
+
+		min = transform.position.y - transform.lossyScale.y / 2;
+		max = transform.position.y + transform.lossyScale.y / 2;
+		bool withinY = (player.GetMax.y > min) && (player.GetMin.y < max);
+
+		return withinSentA && withinY;
+	}
+
+	bool IsWithinY(int a)
+	{
+		float min = transform.position.x - transform.lossyScale.x / 2;
+		float max = transform.position.x + transform.lossyScale.x / 2;
+		bool xWithin = (player.GetMax.x > min) && (player.GetMin.x < max);
+
+		min = transform.position.z - transform.lossyScale.x / 2;
+		max = transform.position.z + transform.lossyScale.x / 2;
+		bool zWithin = (player.GetMax.z > min) && (player.GetMin.z < max);
+
+		return xWithin && zWithin;
 	}
 
 	bool IsInFront(int a)
