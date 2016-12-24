@@ -4,24 +4,50 @@ using UnityEngine;
 
 public class SimpleController : MonoBehaviour
 {
-	CharacterController controller;
+	Collider col;
 	[SerializeField] float speed;
+	Vector3 vel;
+	bool[] restrictAxis = new bool[3] { false, false, false };
+	public enum Direction { Forward, Backward };
+	Direction restrictDir;
 
 	void Start()
 	{
-		controller = GetComponent<CharacterController>();
+		col = GetComponent<Collider>();
 	}
 
 	void Update()
 	{
-		Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-		//controller.Move(input * speed * Time.deltaTime);
+		vel = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-		RaycastHit hitInfo;
-		if (Physics.Raycast(new Ray(transform.position, transform.forward), out hitInfo, 1))
+		for (int i = 0; i < restrictAxis.Length; i++)
 		{
-			input.z = input.z > 0 ? 0 : input.z;
+			if (restrictAxis[i])
+			{
+				if (restrictDir == Direction.Forward) vel[i] = vel[i] > 0 ? 0 : vel[i];
+				if (restrictDir == Direction.Backward) vel[i] = vel[i] < 0 ? 0 : vel[i];
+			}
 		}
-		transform.position += input * speed * Time.deltaTime;
+
+		transform.position += vel * speed * Time.deltaTime;
 	}
+
+	public void RestrictX(bool doRestriction)
+	{
+		restrictAxis[0] = doRestriction;
+	}
+
+	public void RestrictZ(bool doRestriction, Direction restrictDir)
+	{
+		restrictAxis[2] = doRestriction;
+		this.restrictDir = restrictDir;
+	}
+
+	public float x { get { return transform.position.x; } }
+	public float z { get { return transform.position.z; } }
+
+	public float GetX { get { return col.bounds.max.x + (speed * Time.deltaTime); } }
+	public float GetMinX { get { return col.bounds.min.x - (speed * Time.deltaTime); } }
+	public float GetZ { get { return col.bounds.max.z + (speed * Time.deltaTime); } }
+	public float GetMinZ { get { return col.bounds.min.z - (speed * Time.deltaTime); } }
 }
