@@ -432,7 +432,6 @@ GameObject:
   m_Component:
   - component: {fileID: 959963667}
   - component: {fileID: 959963670}
-  - component: {fileID: 959963669}
   - component: {fileID: 959963668}
   - component: {fileID: 959963671}
   m_Layer: 0
@@ -486,20 +485,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &959963669
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 959963666}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &959963670
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -530,7 +515,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1121964514}
   - component: {fileID: 1121964513}
-  - component: {fileID: 1121964512}
   - component: {fileID: 1121964511}
   - component: {fileID: 1121964515}
   m_Layer: 0
@@ -571,18 +555,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1121964512
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1121964510}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1121964513
 MeshFilter:
   m_ObjectHideFlags: 0

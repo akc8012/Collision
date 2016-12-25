@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallZ : MonoBehaviour
+public class WallCollider : MonoBehaviour
 {
 	SimpleController player;
 	[SerializeField] bool inFront;
@@ -47,12 +47,12 @@ public class WallZ : MonoBehaviour
 
 	bool IsWithinXZ(int a)
 	{
-		float min = transform.position[a] - transform.lossyScale.x / 2;
-		float max = transform.position[a] + transform.lossyScale.x / 2;
+		float min = transform.position[a] - transform.lossyScale.x/2;
+		float max = transform.position[a] + transform.lossyScale.x/2;
 		bool withinSentA = (player.GetMax[a] > min) && (player.GetMin[a] < max);
 
-		min = transform.position.y - transform.lossyScale.y / 2;
-		max = transform.position.y + transform.lossyScale.y / 2;
+		min = transform.position.y - transform.lossyScale.y/2;
+		max = transform.position.y + transform.lossyScale.y/2;
 		bool withinY = (player.GetMax.y > min) && (player.GetMin.y < max);
 
 		return withinSentA && withinY;
@@ -60,12 +60,12 @@ public class WallZ : MonoBehaviour
 
 	bool IsWithinY(int a)
 	{
-		float min = transform.position.x - transform.lossyScale.x / 2;
-		float max = transform.position.x + transform.lossyScale.x / 2;
+		float min = transform.position.x - transform.lossyScale.x/2;
+		float max = transform.position.x + transform.lossyScale.x/2;
 		bool xWithin = (player.GetMax.x > min) && (player.GetMin.x < max);
 
-		min = transform.position.z - transform.lossyScale.x / 2;
-		max = transform.position.z + transform.lossyScale.x / 2;
+		min = transform.position.z - transform.lossyScale.x/2;
+		max = transform.position.z + transform.lossyScale.x/2;
 		bool zWithin = (player.GetMax.z > min) && (player.GetMin.z < max);
 
 		return xWithin && zWithin;
