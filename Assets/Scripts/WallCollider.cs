@@ -40,16 +40,10 @@ public class WallCollider : MonoBehaviour
 	void LateUpdate()  // must set player position on a late update -- 
 					   // this way it happens AFTER their input goes through
 	{
-		if (updateSelf) UpdateImplementation();
+		if (updateSelf) CustomLateUpdate();
 	}
 
-	public void CustomLateUpdate()	// must set player position on a late update -- 
-						// this way it happens AFTER their input goes through
-	{
-		UpdateImplementation();
-	}
-
-	void UpdateImplementation()
+	public void CustomLateUpdate()
 	{
 		if (isWithin(Mathf.Abs((int)axis - 2)) && isPositioned((int)axis))
 		{
