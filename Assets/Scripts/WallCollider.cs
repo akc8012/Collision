@@ -9,6 +9,7 @@ public class WallCollider : MonoBehaviour
 	enum Axis { X, Y, Z };
 	[SerializeField] Axis axis;
 	[SerializeField] float cornerSize;
+	[SerializeField] bool updateSelf = false;
 
 	delegate bool IsWithin(int a);
 	delegate bool IsPositioned(int a);
@@ -35,11 +36,22 @@ public class WallCollider : MonoBehaviour
 			getPos = GetBehindPos;
 		}
 	}
-	
-	void LateUpdate()	// must set player position on a late update -- 
+
+	void LateUpdate()  // must set player position on a late update -- 
+					   // this way it happens AFTER their input goes through
+	{
+		if (updateSelf) UpdateImplementation();
+	}
+
+	public void CustomLateUpdate()	// must set player position on a late update -- 
 						// this way it happens AFTER their input goes through
 	{
-		if (isWithin(Mathf.Abs((int)axis-2)) && isPositioned((int)axis))
+		UpdateImplementation();
+	}
+
+	void UpdateImplementation()
+	{
+		if (isWithin(Mathf.Abs((int)axis - 2)) && isPositioned((int)axis))
 		{
 			player.SetPos((int)axis, getPos((int)axis));
 		}
@@ -64,8 +76,8 @@ public class WallCollider : MonoBehaviour
 		float max = transform.position.x + transform.lossyScale.x/2;
 		bool xWithin = (player.GetMax.x > min) && (player.GetMin.x < max);
 
-		min = transform.position.z - transform.lossyScale.x/2;
-		max = transform.position.z + transform.lossyScale.x/2;
+		min = transform.position.z - transform.lossyScale.y/2;
+		max = transform.position.z + transform.lossyScale.y/2;
 		bool zWithin = (player.GetMax.z > min) && (player.GetMin.z < max);
 
 		return xWithin && zWithin;
