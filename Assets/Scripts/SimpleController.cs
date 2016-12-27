@@ -21,7 +21,7 @@ public class SimpleController : MonoBehaviour
 		vel = vel.magnitude * vel.normalized * speed * Time.deltaTime;
 
 		vel.y = oldVelY;
-		if (Input.GetKeyDown(KeyCode.Space) && vel.y == (gravity * Time.deltaTime))
+		if (Input.GetButtonDown("Jump") && vel.y == (gravity * Time.deltaTime))
 			vel.y += 12 * Time.deltaTime;
 
 		transform.position += vel;
