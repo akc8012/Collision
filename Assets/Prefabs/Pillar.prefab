@@ -269,7 +269,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647323098072464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 0
   axis: 2
-  cornerSize: 0.1
+  cornerSize: 0.08
 --- !u!114 &114231455805797526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 0
   axis: 1
-  cornerSize: 0.1
+  cornerSize: 0.08
 --- !u!114 &114486853535018150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 1
   axis: 0
-  cornerSize: 0.1
+  cornerSize: 0.08
 --- !u!114 &114578382242164000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 1
   axis: 2
-  cornerSize: 0.1
+  cornerSize: 0.08
 --- !u!114 &114893662346896248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,4 +498,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 0
   axis: 0
-  cornerSize: 0.1
+  cornerSize: 0.08

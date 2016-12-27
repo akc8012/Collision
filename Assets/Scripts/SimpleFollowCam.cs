@@ -14,7 +14,7 @@ public class SimpleFollowCam : MonoBehaviour
 		player = GameObject.FindWithTag("Player").transform;
 	}
 	
-	void Update()
+	void LateUpdate()
 	{
 		Vector3 newPos = player.position + (Vector3.back * zoffset) + (Vector3.up * yoffset);
 		transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * followSpeed);
