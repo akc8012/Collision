@@ -18,6 +18,8 @@ public class WallCollider : MonoBehaviour
 	IsPositioned isPositioned;
 	GetPos getPos;
 
+	public Transform point;
+
 	void Start()
 	{
 		player = GameObject.FindWithTag("Player").GetComponent<SimpleController>();
@@ -45,10 +47,20 @@ public class WallCollider : MonoBehaviour
 
 	public void CustomLateUpdate()
 	{
+		Vector3 pos = ProjectToPlane(player.GetMax);
+		if (point) point.position = pos;
+
 		if (isWithin(Mathf.Abs((int)axis - 2)) && isPositioned((int)axis))
 		{
 			player.SetPos((int)axis, getPos((int)axis));
 		}
+	}
+
+	Vector3 ProjectToPlane(Vector3 aPoint)
+	{
+		Vector3 V1 = aPoint - transform.position;
+		Vector3 V2 = Vector3.ProjectOnPlane(V1, transform.forward);
+		return transform.position + V2;
 	}
 
 	bool IsWithinXZ(int a)
@@ -79,7 +91,8 @@ public class WallCollider : MonoBehaviour
 
 	bool IsInFront(int a)
 	{
-		return (player.GetMax[a] > transform.position[a] && player.GetMin[a] < transform.position[a]);
+		Vector3 pos = ProjectToPlane(player.GetMax);
+		return (player.GetMax[a] > pos[a] && player.GetMin[a] < pos[a]);
 	}
 
 	bool IsBehind(int a)
@@ -89,7 +102,8 @@ public class WallCollider : MonoBehaviour
 
 	float GetInFrontPos(int a)
 	{
-		return transform.position[a] - player.GetExtents[a];
+		Vector3 pos = ProjectToPlane(player.GetMax);
+		return pos[a] - player.GetExtents[a];
 	}
 
 	float GetBehindPos(int a)

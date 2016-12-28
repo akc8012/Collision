@@ -331,6 +331,7 @@ MonoBehaviour:
   axis: 1
   cornerSize: 0
   updateSelf: 1
+  point: {fileID: 0}
 --- !u!1001 &1019989653
 Prefab:
   m_ObjectHideFlags: 0
@@ -352,15 +353,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.w
@@ -397,6 +398,10 @@ Prefab:
     - target: {fileID: 1284879785674884, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
