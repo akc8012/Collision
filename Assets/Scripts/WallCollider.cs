@@ -5,9 +5,9 @@ using UnityEngine;
 public class WallCollider : MonoBehaviour
 {
 	SimpleController player;
-	[SerializeField] bool inFront;
 	enum Axis { X, Y, Z };
-	[SerializeField] Axis axis;
+	Axis axis;
+	[SerializeField] bool isWall = true;
 	[SerializeField] float cornerSize;
 	[SerializeField] bool updateSelf = false;
 
@@ -19,6 +19,18 @@ public class WallCollider : MonoBehaviour
 	GetPos getPos;
 
 	public Transform point;
+	Quaternion lastRotation;
+
+	bool InFront
+	{
+		get
+		{
+			if (axis == Axis.Z)
+				return Vector3.Dot(Vector3.forward, transform.forward) > 0;
+			else	//if (axis == Axis.X)
+				return Vector3.Dot(Vector3.forward, transform.right) < 0;
+		}
+	}
 
 	Vector3 PlayerCornerPoint
 	{
@@ -26,12 +38,12 @@ public class WallCollider : MonoBehaviour
 		{
 			if (axis == Axis.Z)
 			{
-				if (inFront) return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetTopLeft : player.GetTopRight;
+				if (InFront) return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetTopLeft : player.GetTopRight;
 				else return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetBottomLeft : player.GetBottomRight;
 			}
 			else// if (axis == Axis.X)
 			{
-				if (inFront) return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopRight : player.GetBottomRight;
+				if (InFront) return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopRight : player.GetBottomRight;
 				else return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopLeft : player.GetBottomLeft;
 			}
 		}
@@ -42,12 +54,26 @@ public class WallCollider : MonoBehaviour
 		player = GameObject.FindWithTag("Player").GetComponent<SimpleController>();
 		transform.position += -transform.forward * cornerSize;
 
+		UpdateRotation();
+
 		if (axis == Axis.Y)
 			isWithin = IsWithinY;
 		else
 			isWithin = IsWithinXZ;
+	}
 
-		if (inFront) {
+	void UpdateRotation()
+	{
+		if (isWall)
+		{
+			float angle = Vector3.Angle(Vector3.forward, transform.forward);
+			if (angle < 45 || angle > 135)
+				axis = Axis.Z;
+			else
+				axis = Axis.X;
+		} else axis = Axis.Y;
+
+		if (InFront) {
 			isPositioned = IsInFront;
 			getPos = GetInFrontPos;
 		} else {
@@ -65,6 +91,9 @@ public class WallCollider : MonoBehaviour
 	public void CustomLateUpdate()
 	{
 		if (point) point.position = PlayerCornerPoint;
+
+		if (transform.rotation != lastRotation) UpdateRotation();
+		lastRotation = transform.rotation;
 
 		if (isWithin(Mathf.Abs((int)axis - 2)) && isPositioned((int)axis))
 		{

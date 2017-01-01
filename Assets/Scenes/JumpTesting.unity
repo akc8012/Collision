@@ -327,8 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9802fbca8bf83a14aba530bb703a439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inFront: 0
-  axis: 1
+  isWall: 0
   cornerSize: 0
   updateSelf: 1
   point: {fileID: 0}

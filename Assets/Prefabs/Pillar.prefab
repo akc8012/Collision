@@ -441,10 +441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9802fbca8bf83a14aba530bb703a439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inFront: 0
-  axis: 2
+  isWall: 1
   cornerSize: 0.08
   updateSelf: 0
+  point: {fileID: 0}
 --- !u!114 &114231455805797526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,10 +456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9802fbca8bf83a14aba530bb703a439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inFront: 0
-  axis: 1
+  isWall: 0
   cornerSize: 0.08
   updateSelf: 0
+  point: {fileID: 0}
 --- !u!114 &114322479430075304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -482,10 +482,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9802fbca8bf83a14aba530bb703a439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inFront: 1
-  axis: 0
+  isWall: 1
   cornerSize: 0.08
   updateSelf: 0
+  point: {fileID: 0}
 --- !u!114 &114578382242164000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -497,10 +497,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9802fbca8bf83a14aba530bb703a439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inFront: 1
-  axis: 2
+  isWall: 1
   cornerSize: 0.08
   updateSelf: 0
+  point: {fileID: 0}
 --- !u!114 &114893662346896248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9802fbca8bf83a14aba530bb703a439e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inFront: 0
-  axis: 0
+  isWall: 1
   cornerSize: 0.08
   updateSelf: 0
+  point: {fileID: 0}
