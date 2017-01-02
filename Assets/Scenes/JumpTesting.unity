@@ -333,8 +333,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWall: 0
   cornerSize: 0
-  snapLeniency: 0
+  snapLeniency: 0.2
   updateSelf: 1
+  minT: {fileID: 0}
+  maxT: {fileID: 0}
 --- !u!1001 &1019989653
 Prefab:
   m_ObjectHideFlags: 0

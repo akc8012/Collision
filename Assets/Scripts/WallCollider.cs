@@ -8,6 +8,7 @@ public class WallCollider : MonoBehaviour
 	enum Axis { X, Y, Z };
 	Axis axis;
 	Quaternion lastRotation;
+
 	[SerializeField] bool isWall = true;
 	[SerializeField] float cornerSize;
 	[SerializeField] float snapLeniency;
@@ -20,14 +21,19 @@ public class WallCollider : MonoBehaviour
 	IsPositioned isPositioned;
 	GetPos getPos;
 
+	[SerializeField] Transform minT;
+	[SerializeField] Transform maxT;
+
 	bool InFront
 	{
 		get
 		{
 			if (axis == Axis.Z)
 				return Vector3.Dot(Vector3.forward, transform.forward) > 0;
-			else	//if (axis == Axis.X)
+			else if (axis == Axis.X)
 				return Vector3.Dot(Vector3.forward, transform.right) < 0;
+			else
+				return Vector3.Dot(Vector3.up, transform.forward) > 0;
 		}
 	}
 
@@ -40,10 +46,15 @@ public class WallCollider : MonoBehaviour
 				if (InFront) return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetTopLeft : player.GetTopRight;
 				else return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetBottomLeft : player.GetBottomRight;
 			}
-			else// if (axis == Axis.X)
+			else if (axis == Axis.X)
 			{
 				if (InFront) return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopRight : player.GetBottomRight;
 				else return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopLeft : player.GetBottomLeft;
+			}
+			else
+			{
+				if (InFront) return Vector3.Dot(Vector3.up, transform.up) > 0 ? player.GetMax : player.GetMax;	// meh, good enough
+				else return Vector3.Dot(Vector3.up, transform.up) > 0 ? player.GetTopRight : player.GetBottomLeft;
 			}
 		}
 	}
@@ -141,12 +152,26 @@ public class WallCollider : MonoBehaviour
 
 	bool IsWithinY(int a)
 	{
-		float min = transform.position.x - transform.lossyScale.x/2;
-		float max = transform.position.x + transform.lossyScale.x/2;
+		float weirdShit = 1+Mathf.Abs(transform.right.x-1);
+		float min = transform.position.x - (transform.lossyScale.x/2 * weirdShit);
+		float max = transform.position.x + (transform.lossyScale.x/2 * weirdShit);
 		bool xWithin = (player.GetMax.x > min) && (player.GetMin.x < max);
 
-		min = transform.position.z - transform.lossyScale.y/2;
-		max = transform.position.z + transform.lossyScale.y/2;
+		if (minT && maxT && Time.frameCount % 2 == 0)
+		{
+			Vector3 minPos = transform.position;
+			Vector3 maxPos = transform.position;
+
+			minPos.x = min;
+			maxPos.x = max;
+
+			minT.position = minPos;
+			maxT.position = maxPos;
+		}
+
+		min = transform.position.z - (transform.lossyScale.y/2 * weirdShit);
+		max = transform.position.z + (transform.lossyScale.y/2 * weirdShit);
+
 		bool zWithin = (player.GetMax.z > min) && (player.GetMin.z < max);
 
 		return xWithin && zWithin;
