@@ -91,9 +91,9 @@ public class WallCollider : MonoBehaviour
 
 	public void CustomLateUpdate()
 	{
-		if (min && max)
+		if (min)// && max)
 		{
-			Vector3 minVec = transform.position;
+			/*Vector3 minVec = transform.position;
 			Vector3 maxVec = transform.position;
 			minVec.x -= transform.lossyScale.x / 2 * transform.right.x;
 			minVec.z -= transform.lossyScale.x / 2 * transform.right.z;
@@ -101,7 +101,9 @@ public class WallCollider : MonoBehaviour
 			maxVec.z += transform.lossyScale.x / 2 * transform.right.z;
 
 			min.position = player.GetMin;
-			max.position = player.GetMax;
+			max.position = player.GetMax;*/
+
+			min.position = ProjectToPlane(PlayerCornerPoint);
 		}
 
 		if (transform.rotation != lastRotation) UpdateRotation();
@@ -113,32 +115,43 @@ public class WallCollider : MonoBehaviour
 		}
 	}
 
-	Vector3 ProjectToPlane(Vector3 aPoint)
+	void GetMinMax(int a, out float min, out float max)
 	{
-		Vector3 V1 = aPoint - transform.position;
-		Vector3 V2 = Vector3.ProjectOnPlane(V1, transform.forward);
-		return transform.position + V2;
-	}
-
-	bool IsWithinXZ(int a)
-	{
-		float min = transform.position[a];
-		float max = transform.position[a];
-		min -= transform.lossyScale.x/2 * transform.right[a];
-		max += transform.lossyScale.x/2 * transform.right[a];
+		min = transform.position[a] - (transform.lossyScale.x/2 * transform.right[a]);
+		max = transform.position[a] + (transform.lossyScale.x/2 * transform.right[a]);
 		if (max < min)
 		{
 			float temp = min;
 			min = max;
 			max = temp;
 		}
+	}
+
+	Vector3 ProjectToPlane(Vector3 aPoint)
+	{
+		Vector3 V1 = aPoint - transform.position;
+		Vector3 V2 = Vector3.ProjectOnPlane(V1, transform.forward);
+		Vector3 point = transform.position + V2;
+
+		float min, max;
+		GetMinMax(0, out min, out max);
+		point.x = Mathf.Clamp(point.x, min, max);
+
+		GetMinMax(2, out min, out max);
+		point.z = Mathf.Clamp(point.z, min, max);
+
+		return point;
+	}
+
+	bool IsWithinXZ(int a)
+	{
+		float min, max;
+		GetMinMax(a, out min, out max);
 		bool withinSentA = (player.GetMax[a] > min) && (player.GetMin[a] < max);
 
 		min = transform.position.y - transform.lossyScale.y/2;
 		max = transform.position.y + transform.lossyScale.y/2;
 		bool withinY = (player.GetMax.y > min) && (player.GetMin.y < max);
-
-		print(withinSentA);
 
 		return withinSentA && withinY;
 	}
