@@ -36,6 +36,8 @@ public class SimpleController : MonoBehaviour
 		transform.position = newPos;
 	}
 
+	public Vector3 GetVel { get { return vel; } }
+
 	public Vector3 GetExtents { get { return transform.lossyScale/2; } }
 
 	public Vector3 GetMax { get { return transform.position + GetExtents; } }	// top right

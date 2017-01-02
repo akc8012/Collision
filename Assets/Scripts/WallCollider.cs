@@ -10,6 +10,7 @@ public class WallCollider : MonoBehaviour
 	Quaternion lastRotation;
 	[SerializeField] bool isWall = true;
 	[SerializeField] float cornerSize;
+	[SerializeField] float snapLeniency;
 	[SerializeField] bool updateSelf = false;
 
 	delegate bool IsWithin(int a);
@@ -18,9 +19,6 @@ public class WallCollider : MonoBehaviour
 	IsWithin isWithin;
 	IsPositioned isPositioned;
 	GetPos getPos;
-
-	public Transform min;
-	public Transform max;
 
 	bool InFront
 	{
@@ -91,21 +89,6 @@ public class WallCollider : MonoBehaviour
 
 	public void CustomLateUpdate()
 	{
-		if (min)// && max)
-		{
-			/*Vector3 minVec = transform.position;
-			Vector3 maxVec = transform.position;
-			minVec.x -= transform.lossyScale.x / 2 * transform.right.x;
-			minVec.z -= transform.lossyScale.x / 2 * transform.right.z;
-			maxVec.x += transform.lossyScale.x / 2 * transform.right.x;
-			maxVec.z += transform.lossyScale.x / 2 * transform.right.z;
-
-			min.position = player.GetMin;
-			max.position = player.GetMax;*/
-
-			min.position = ProjectToPlane(PlayerCornerPoint);
-		}
-
 		if (transform.rotation != lastRotation) UpdateRotation();
 		lastRotation = transform.rotation;
 
@@ -172,13 +155,13 @@ public class WallCollider : MonoBehaviour
 	bool IsInFront(int a)
 	{
 		Vector3 pos = ProjectToPlane(PlayerCornerPoint);
-		return (player.GetMax[a] > pos[a] && player.GetMin[a] < pos[a]);
+		return (player.GetMax[a] > pos[a] && (player.GetMax[a]-snapLeniency < pos[a]) && player.GetMin[a] < pos[a]);
 	}
 
 	bool IsBehind(int a)
 	{
 		Vector3 pos = ProjectToPlane(PlayerCornerPoint);
-		return (player.GetMin[a] < pos[a] && player.GetMax[a] > pos[a]);
+		return (player.GetMin[a] < pos[a] && (player.GetMin[a]+snapLeniency > pos[a]) && player.GetMax[a] > pos[a]);
 	}
 
 	float GetInFrontPos(int a)

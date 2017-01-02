@@ -192,19 +192,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.29679152
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.95494235
       objectReference: {fileID: 0}
     - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_RootOrder
@@ -237,6 +237,10 @@ Prefab:
     - target: {fileID: 1489163993408146, guid: b9263203f00204242b80adf8d20678ed, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762654980846158, guid: b9263203f00204242b80adf8d20678ed, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 34.53
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -329,8 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWall: 0
   cornerSize: 0
+  snapLeniency: 0
   updateSelf: 1
-  point: {fileID: 0}
 --- !u!1001 &1019989653
 Prefab:
   m_ObjectHideFlags: 0
