@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ColliderController : MonoBehaviour
 {
+	[SerializeField] bool doRotation = false;
+
 	WallCollider frontWall;
 	WallCollider backWall;
 	WallCollider leftWall;
@@ -17,6 +19,12 @@ public class ColliderController : MonoBehaviour
 		leftWall = transform.Find("Left Wall").GetComponent<WallCollider>();
 		rightWall = transform.Find("Right Wall").GetComponent<WallCollider>();
 		topWall = transform.Find("Top Wall").GetComponent<WallCollider>();
+	}
+
+	void Update()
+	{
+		if (doRotation)
+			transform.Rotate(transform.up);
 	}
 	
 	void LateUpdate()

@@ -7,6 +7,7 @@ public class WallCollider : MonoBehaviour
 	SimpleController player;
 	enum Axis { X, Y, Z };
 	Axis axis;
+	Quaternion lastRotation;
 	[SerializeField] bool isWall = true;
 	[SerializeField] float cornerSize;
 	[SerializeField] bool updateSelf = false;
@@ -18,8 +19,8 @@ public class WallCollider : MonoBehaviour
 	IsPositioned isPositioned;
 	GetPos getPos;
 
-	public Transform point;
-	Quaternion lastRotation;
+	public Transform min;
+	public Transform max;
 
 	bool InFront
 	{
@@ -90,7 +91,18 @@ public class WallCollider : MonoBehaviour
 
 	public void CustomLateUpdate()
 	{
-		if (point) point.position = PlayerCornerPoint;
+		if (min && max)
+		{
+			Vector3 minVec = transform.position;
+			Vector3 maxVec = transform.position;
+			minVec.x -= transform.lossyScale.x / 2 * transform.right.x;
+			minVec.z -= transform.lossyScale.x / 2 * transform.right.z;
+			maxVec.x += transform.lossyScale.x / 2 * transform.right.x;
+			maxVec.z += transform.lossyScale.x / 2 * transform.right.z;
+
+			min.position = player.GetMin;
+			max.position = player.GetMax;
+		}
 
 		if (transform.rotation != lastRotation) UpdateRotation();
 		lastRotation = transform.rotation;
@@ -110,13 +122,23 @@ public class WallCollider : MonoBehaviour
 
 	bool IsWithinXZ(int a)
 	{
-		float min = transform.position[a] - transform.lossyScale.x/2;
-		float max = transform.position[a] + transform.lossyScale.x/2;
+		float min = transform.position[a];
+		float max = transform.position[a];
+		min -= transform.lossyScale.x/2 * transform.right[a];
+		max += transform.lossyScale.x/2 * transform.right[a];
+		if (max < min)
+		{
+			float temp = min;
+			min = max;
+			max = temp;
+		}
 		bool withinSentA = (player.GetMax[a] > min) && (player.GetMin[a] < max);
 
 		min = transform.position.y - transform.lossyScale.y/2;
 		max = transform.position.y + transform.lossyScale.y/2;
 		bool withinY = (player.GetMax.y > min) && (player.GetMin.y < max);
+
+		print(withinSentA);
 
 		return withinSentA && withinY;
 	}
