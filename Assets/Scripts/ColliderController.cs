@@ -12,7 +12,7 @@ public class ColliderController : MonoBehaviour
 	WallCollider rightWall;
 	WallCollider topWall;
 
-	void Start()
+	void Awake()
 	{
 		frontWall = transform.Find("Front Wall").GetComponent<WallCollider>();
 		backWall = transform.Find("Back Wall").GetComponent<WallCollider>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallCollider : MonoBehaviour
 {
-	SimpleController player;
+	PlayerCollider player;
 	enum Axis { X, Y, Z };
 	Axis axis;
 	Quaternion lastRotation;
@@ -21,47 +21,13 @@ public class WallCollider : MonoBehaviour
 	IsPositioned isPositioned;
 	GetPos getPos;
 
+	// debug stuff
 	[SerializeField] Transform minT;
 	[SerializeField] Transform maxT;
 
-	bool InFront
+	void Awake()
 	{
-		get
-		{
-			if (axis == Axis.Z)
-				return Vector3.Dot(Vector3.forward, transform.forward) > 0;
-			else if (axis == Axis.X)
-				return Vector3.Dot(Vector3.forward, transform.right) < 0;
-			else
-				return Vector3.Dot(Vector3.up, transform.forward) > 0;
-		}
-	}
-
-	Vector3 PlayerCornerPoint
-	{
-		get
-		{
-			if (axis == Axis.Z)
-			{
-				if (InFront) return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetTopLeft : player.GetTopRight;
-				else return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetBottomLeft : player.GetBottomRight;
-			}
-			else if (axis == Axis.X)
-			{
-				if (InFront) return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopRight : player.GetBottomRight;
-				else return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopLeft : player.GetBottomLeft;
-			}
-			else
-			{
-				if (InFront) return Vector3.Dot(Vector3.up, transform.up) > 0 ? player.GetMax : player.GetMax;	// meh, good enough
-				else return Vector3.Dot(Vector3.up, transform.up) > 0 ? player.GetTopRight : player.GetBottomLeft;
-			}
-		}
-	}
-
-	void Start()
-	{
-		player = GameObject.FindWithTag("Player").GetComponent<SimpleController>();
+		player = GameObject.FindWithTag("Player").GetComponent<PlayerController>().GetCol;
 		transform.position += -transform.forward * cornerSize;
 
 		UpdateRotation();
@@ -70,6 +36,45 @@ public class WallCollider : MonoBehaviour
 			isWithin = IsWithinY;
 		else
 			isWithin = IsWithinXZ;
+	}
+
+	bool InFront
+	{
+		get
+		{
+			switch (axis)
+			{
+				case Axis.Z:
+					return Vector3.Dot(Vector3.forward, transform.forward) > 0;
+				case Axis.X:
+					return Vector3.Dot(Vector3.forward, transform.right) < 0;
+				case Axis.Y:
+				default:
+					return Vector3.Dot(Vector3.up, transform.forward) > 0;
+			}
+		}
+	}
+
+	Vector3 PlayerCornerPoint
+	{
+		get
+		{
+			switch (axis)
+			{
+				case Axis.Z:
+					if (InFront) return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetTopLeft : player.GetTopRight;
+					else return Vector3.Dot(Vector3.forward, transform.right) > 0 ? player.GetBottomLeft : player.GetBottomRight;
+
+				case Axis.X:
+					if (InFront) return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopRight : player.GetBottomRight;
+					else return Vector3.Dot(Vector3.forward, transform.forward) > 0 ? player.GetTopLeft : player.GetBottomLeft;
+
+				case Axis.Y:
+				default:
+					if (InFront) return Vector3.Dot(Vector3.up, transform.up) > 0 ? player.GetMax : player.GetMax;  // meh, good enough
+					else return Vector3.Dot(Vector3.up, transform.up) > 0 ? player.GetTopRight : player.GetBottomLeft;
+			}
+		}
 	}
 
 	void UpdateRotation()
