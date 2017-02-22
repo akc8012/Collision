@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+	Text displayText;
+
 	PlayerCollider col;
 	Transform cam;
 	[SerializeField] Transform rotateMesh;
@@ -14,21 +17,27 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float maxVel = 5;			// maximum velocity in any direction
 	float rotSmooth = 20;		// smoothing on the lerp to rotate towards stick direction
 	[SerializeField] float gravity = 35;
-	[SerializeField] float jumpSpeed = 11;
-	bool jumpKeyUp = true;
+	[SerializeField] float jumpSpeed = 10;
+
+	const float jumpDetraction = 0.25f;
+	const float fallDownFast = 0.95f;
+	float currJumpSpeed;
 	bool isGrounded = false;
 	public bool IsGrounded { get { return isGrounded; } }
+	public bool IsRising { get { return vel.y > 0; } }
 
 	public delegate void OnFloor();
 
 	void Awake()
 	{
 		cam = GameObject.FindWithTag("MainCamera").transform;
+		displayText = GameObject.Find("Text").GetComponent<Text>();
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 60;
 
 		col = new PlayerCollider();
 		col.Init(transform, onFloor);
+		currJumpSpeed = jumpSpeed;
 	}
 
 	void Update()
@@ -44,17 +53,37 @@ public class PlayerController : MonoBehaviour
 		vel = Vector3.ClampMagnitude(vel, maxVel);
 		vel.y = lastVelY;
 
-		if (Input.GetButton("Jump") && IsGrounded && jumpKeyUp)
+		if (Input.GetButtonDown("Jump") && IsGrounded)
 		{
 			animator.SetTrigger("Jump");
-			vel.y = jumpSpeed;
-			jumpKeyUp = false;
+			StartCoroutine("Jump");
 		}
-		if (Input.GetButtonUp("Jump")) jumpKeyUp = true;
+
+		// no longer pressing jump (in air) OR I'm falling
+		if ((!Input.GetButton("Jump") && !isGrounded) || !IsRising)
+		{
+			if (IsRising)      // if I'm rising up, set my vel to fall down faster
+				vel.y *= fallDownFast;
+
+			StopCoroutine("Jump");
+			currJumpSpeed = jumpSpeed;
+		}
 
 		vel.y -= gravity * Time.deltaTime;
 		transform.position += vel * Time.deltaTime;
 		isGrounded = false;
+
+		displayText.text = vel.y+"";
+	}
+
+	IEnumerator Jump()
+	{
+		while (true)
+		{
+			vel.y += currJumpSpeed;
+			currJumpSpeed *= jumpDetraction;
+			yield return null;
+		}
 	}
 
 	void onFloor()
