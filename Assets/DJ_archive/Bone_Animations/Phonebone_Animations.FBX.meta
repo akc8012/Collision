@@ -1,0 +1,537 @@
+fileFormatVersion: 2
+guid: dc96066a247d1a548b33504e8e9a1eeb
+timeCreated: 1479165120
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: PhoneBone
+    100002: //RootNode
+    100004: SheK
+    100006: SheKHead
+    100008: SheKLArm1
+    100010: SheKLArm2
+    100012: SheKLArmCollarbone
+    100014: SheKLArmDigit01
+    100016: SheKLArmDigit02
+    100018: SheKLArmDigit03
+    100020: SheKLArmDigit11
+    100022: SheKLArmDigit12
+    100024: SheKLArmDigit13
+    100026: SheKLArmDigit21
+    100028: SheKLArmDigit22
+    100030: SheKLArmDigit23
+    100032: SheKLArmPalm
+    100034: SheKLLeg1
+    100036: SheKLLeg2
+    100038: SheKLLegDigit01
+    100040: SheKLLegPalm
+    100042: SheKLLegPlatform
+    100044: SheKNeck1
+    100046: SheKNeck2
+    100048: SheKPelvis
+    100050: SheKRArm1
+    100052: SheKRArm2
+    100054: SheKRArmCollarbone
+    100056: SheKRArmDigit01
+    100058: SheKRArmDigit02
+    100060: SheKRArmDigit03
+    100062: SheKRArmDigit11
+    100064: SheKRArmDigit12
+    100066: SheKRArmDigit13
+    100068: SheKRArmDigit21
+    100070: SheKRArmDigit22
+    100072: SheKRArmDigit23
+    100074: SheKRArmPalm
+    100076: SheKRibcage
+    100078: SheKRLeg1
+    100080: SheKRLeg2
+    100082: SheKRLegDigit01
+    100084: SheKRLegPalm
+    100086: SheKRLegPlatform
+    100088: SheKSpine1
+    100090: SheKSpine2
+    100092: SheKSpine3
+    400000: PhoneBone
+    400002: //RootNode
+    400004: SheK
+    400006: SheKHead
+    400008: SheKLArm1
+    400010: SheKLArm2
+    400012: SheKLArmCollarbone
+    400014: SheKLArmDigit01
+    400016: SheKLArmDigit02
+    400018: SheKLArmDigit03
+    400020: SheKLArmDigit11
+    400022: SheKLArmDigit12
+    400024: SheKLArmDigit13
+    400026: SheKLArmDigit21
+    400028: SheKLArmDigit22
+    400030: SheKLArmDigit23
+    400032: SheKLArmPalm
+    400034: SheKLLeg1
+    400036: SheKLLeg2
+    400038: SheKLLegDigit01
+    400040: SheKLLegPalm
+    400042: SheKLLegPlatform
+    400044: SheKNeck1
+    400046: SheKNeck2
+    400048: SheKPelvis
+    400050: SheKRArm1
+    400052: SheKRArm2
+    400054: SheKRArmCollarbone
+    400056: SheKRArmDigit01
+    400058: SheKRArmDigit02
+    400060: SheKRArmDigit03
+    400062: SheKRArmDigit11
+    400064: SheKRArmDigit12
+    400066: SheKRArmDigit13
+    400068: SheKRArmDigit21
+    400070: SheKRArmDigit22
+    400072: SheKRArmDigit23
+    400074: SheKRArmPalm
+    400076: SheKRibcage
+    400078: SheKRLeg1
+    400080: SheKRLeg2
+    400082: SheKRLegDigit01
+    400084: SheKRLegPalm
+    400086: SheKRLegPlatform
+    400088: SheKSpine1
+    400090: SheKSpine2
+    400092: SheKSpine3
+    4300000: PhoneBone
+    7400000: Idle
+    7400002: Run
+    7400004: Jump
+    9500000: //RootNode
+    13700000: PhoneBone
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: PhoneBone
+        weight: 1
+      - path: SheK
+        weight: 1
+      - path: SheKLLegPlatform
+        weight: 1
+      - path: SheKPelvis
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2/SheKLLegPalm
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2/SheKLLegPalm/SheKLLegDigit01
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2/SheKRLegPalm
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2/SheKRLegPalm/SheKRLegDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01/SheKLArmDigit02
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01/SheKLArmDigit02/SheKLArmDigit03
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11/SheKLArmDigit12
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11/SheKLArmDigit12/SheKLArmDigit13
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21/SheKLArmDigit22
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21/SheKLArmDigit22/SheKLArmDigit23
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1/SheKNeck2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1/SheKNeck2/SheKHead
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01/SheKRArmDigit02
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01/SheKRArmDigit02/SheKRArmDigit03
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11/SheKRArmDigit12
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11/SheKRArmDigit12/SheKRArmDigit13
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21/SheKRArmDigit22
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21/SheKRArmDigit22/SheKRArmDigit23
+        weight: 1
+      - path: SheKRLegPlatform
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: PhoneBone
+        weight: 1
+      - path: SheK
+        weight: 1
+      - path: SheKLLegPlatform
+        weight: 1
+      - path: SheKPelvis
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2/SheKLLegPalm
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2/SheKLLegPalm/SheKLLegDigit01
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2/SheKRLegPalm
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2/SheKRLegPalm/SheKRLegDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01/SheKLArmDigit02
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01/SheKLArmDigit02/SheKLArmDigit03
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11/SheKLArmDigit12
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11/SheKLArmDigit12/SheKLArmDigit13
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21/SheKLArmDigit22
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21/SheKLArmDigit22/SheKLArmDigit23
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1/SheKNeck2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1/SheKNeck2/SheKHead
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01/SheKRArmDigit02
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01/SheKRArmDigit02/SheKRArmDigit03
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11/SheKRArmDigit12
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11/SheKRArmDigit12/SheKRArmDigit13
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21/SheKRArmDigit22
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21/SheKRArmDigit22/SheKRArmDigit23
+        weight: 1
+      - path: SheKRLegPlatform
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 138
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: PhoneBone
+        weight: 1
+      - path: SheK
+        weight: 1
+      - path: SheKLLegPlatform
+        weight: 1
+      - path: SheKPelvis
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2/SheKLLegPalm
+        weight: 1
+      - path: SheKPelvis/SheKLLeg1/SheKLLeg2/SheKLLegPalm/SheKLLegDigit01
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2/SheKRLegPalm
+        weight: 1
+      - path: SheKPelvis/SheKRLeg1/SheKRLeg2/SheKRLegPalm/SheKRLegDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01/SheKLArmDigit02
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit01/SheKLArmDigit02/SheKLArmDigit03
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11/SheKLArmDigit12
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit11/SheKLArmDigit12/SheKLArmDigit13
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21/SheKLArmDigit22
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKLArmCollarbone/SheKLArm1/SheKLArm2/SheKLArmPalm/SheKLArmDigit21/SheKLArmDigit22/SheKLArmDigit23
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1/SheKNeck2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKNeck1/SheKNeck2/SheKHead
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01/SheKRArmDigit02
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit01/SheKRArmDigit02/SheKRArmDigit03
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11/SheKRArmDigit12
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit11/SheKRArmDigit12/SheKRArmDigit13
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21/SheKRArmDigit22
+        weight: 1
+      - path: SheKPelvis/SheKSpine1/SheKSpine2/SheKSpine3/SheKRibcage/SheKRArmCollarbone/SheKRArm1/SheKRArm2/SheKRArmPalm/SheKRArmDigit21/SheKRArmDigit22/SheKRArmDigit23
+        weight: 1
+      - path: SheKRLegPlatform
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.36
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -27,7 +27,6 @@ public class WallCollider : MonoBehaviour
 
 	void Awake()
 	{
-		player = GameObject.FindWithTag("Player").GetComponent<PlayerController>().GetCol;
 		transform.position += -transform.forward * cornerSize;
 
 		UpdateRotation();
@@ -36,6 +35,11 @@ public class WallCollider : MonoBehaviour
 			isWithin = IsWithinY;
 		else
 			isWithin = IsWithinXZ;
+	}
+
+	void Start()
+	{
+		player = GameObject.FindWithTag("Player").GetComponent<PlayerController>().GetCol;
 	}
 
 	bool InFront
