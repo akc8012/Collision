@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateMesh: {fileID: 4768151676531038}
   animator: {fileID: 95487712220293180}
-  moveSpeed: 10
+  moveSpeed: 10.5
   maxVel: 5
   gravity: 35
   jumpSpeed: 10

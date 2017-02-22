@@ -17,7 +17,11 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float maxVel = 5;			// maximum velocity in any direction
 	float rotSmooth = 20;		// smoothing on the lerp to rotate towards stick direction
 	[SerializeField] float gravity = 35;
-	[SerializeField] float jumpSpeed = 10;
+	[SerializeField] float jumpSpeed = 10.5f;
+
+	float lastSpeed = 0;
+	float acceleration = 0.3f;
+	float deceleration = 1.5f;
 
 	const float jumpDetraction = 0.25f;
 	const float fallDownFast = 0.95f;
@@ -42,10 +46,15 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		float speed = 0.0f;
+		float speed = 0;
 		Vector3 moveDir = GetMoveDirection(ref speed);
+		
+		if (speed != 0)
+			SpeedUp(ref speed);
+		else
+			SlowDown(ref speed);
+
 		RotateMesh(moveDir, speed);
-		speed *= moveSpeed;
 		animator.SetFloat("Speed", speed);
 
 		float lastVelY = vel.y;
@@ -59,10 +68,9 @@ public class PlayerController : MonoBehaviour
 			StartCoroutine("Jump");
 		}
 
-		// no longer pressing jump (in air) OR I'm falling
 		if ((!Input.GetButton("Jump") && !isGrounded) || !IsRising)
 		{
-			if (IsRising)      // if I'm rising up, set my vel to fall down faster
+			if (IsRising)      // set vel to fall down faster
 				vel.y *= fallDownFast;
 
 			StopCoroutine("Jump");
@@ -72,8 +80,9 @@ public class PlayerController : MonoBehaviour
 		vel.y -= gravity * Time.deltaTime;
 		transform.position += vel * Time.deltaTime;
 		isGrounded = false;
+		lastSpeed = speed;
 
-		displayText.text = vel.y+"";
+		displayText.text = speed+"";
 	}
 
 	IEnumerator Jump()
@@ -105,6 +114,18 @@ public class PlayerController : MonoBehaviour
 			moveDir = new Vector3(-moveDir.x, moveDir.y, moveDir.z);
 
 		return moveDir;
+	}
+
+	void SpeedUp(ref float speed)
+	{
+		speed = lastSpeed + acceleration;
+		speed = Mathf.Clamp(speed, 0, moveSpeed);
+	}
+
+	void SlowDown(ref float speed)
+	{
+		speed = lastSpeed - deceleration;
+		speed = Mathf.Clamp(speed, 0, moveSpeed);
 	}
 
 	void RotateMesh(Vector3 moveDir, float speed)
