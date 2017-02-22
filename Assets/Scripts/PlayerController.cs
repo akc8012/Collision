@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 	float deceleration = 1.5f;
 
 	const float jumpDetraction = 0.25f;
-	const float fallDownFast = 0.95f;
+	const float fallDownFast = 0.90f;
 	float currJumpSpeed;
 	bool isGrounded = false;
 	public bool IsGrounded { get { return isGrounded; } }
@@ -131,11 +131,12 @@ public class PlayerController : MonoBehaviour
 	void RotateMesh(Vector3 moveDir, float speed)
 	{
 		if (Vector3.Angle(moveDir, rotateMesh.forward) > 135)        // if the difference is above a certain angle,
-			rotateMesh.forward = moveDir;                            // we'll want to snap right to it, instead of lerping
+			rotateMesh.forward = moveDir;							 // we'll want to snap right to it, instead of lerping
 		else
 		{
 			Vector3 targetRotation = Vector3.Lerp(rotateMesh.forward, moveDir, Time.deltaTime * rotSmooth);
-			if (targetRotation != Vector3.zero) rotateMesh.rotation = Quaternion.LookRotation(targetRotation);
+			if (targetRotation != Vector3.zero)
+				rotateMesh.rotation = Quaternion.LookRotation(targetRotation);
 		}
 	}
 
