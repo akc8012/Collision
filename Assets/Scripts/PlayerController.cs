@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float gravity = 35;
 	[SerializeField] float jumpSpeed = 11;
 	bool jumpKeyUp = true;
-	public bool IsGrounded { get { return vel.y == (gravity * Time.deltaTime); } }
+	bool isGrounded = false;
+	public bool IsGrounded { get { return isGrounded; } }
 
 	public delegate void OnFloor();
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
 		vel = Vector3.ClampMagnitude(vel, maxVel);
 		vel.y = lastVelY;
 
-		if (Input.GetButton("Jump") && jumpKeyUp)
+		if (Input.GetButton("Jump") && IsGrounded && jumpKeyUp)
 		{
 			//animator.SetTrigger("Jump");
 			vel.y = jumpSpeed;
@@ -64,18 +65,15 @@ public class PlayerController : MonoBehaviour
 		}
 		if (Input.GetButtonUp("Jump")) jumpKeyUp = true;
 
-		vel.y -= gravity * Time.deltaTime;		//if (!IsGrounded) 
-		//else vel.y = (vel.y < -1) ? -0.05f : vel.y;
-
-
-		print(vel.y);
-
+		vel.y -= gravity * Time.deltaTime;
 		transform.position += vel * Time.deltaTime;
+		isGrounded = false;
 	}
 
 	void onFloor()
 	{
 		vel.y = 0;
+		isGrounded = true;
 	}
 
 	Vector3 GetMoveDirection(ref float speed)

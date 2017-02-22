@@ -15,7 +15,6 @@ public class PlayerCollider
 
 	public void SetPos(int axis, float pos)
 	{
-		Debug.Log(axis);
 		if (axis == 1) onFloor();
 
 		Vector3 newPos = transform.position;
