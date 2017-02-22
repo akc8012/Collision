@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 	PlayerCollider col;
 	Transform cam;
+	[SerializeField] Transform rotateMesh;
+	[SerializeField] Animator animator;
 
 	Vector3 vel = Vector3.zero;
 	[SerializeField] float moveSpeed = 10;		// what to increment velocity by
@@ -29,37 +31,22 @@ public class PlayerController : MonoBehaviour
 		col.Init(transform, onFloor);
 	}
 
-	/*void Update()
-	{
-		float oldVelY = vel.y + (gravity * Time.deltaTime);
-
-		float speed = 0;
-		vel = GetMoveDirection(ref speed);
-		vel = vel.magnitude * vel.normalized * moveSpeed * Time.deltaTime;
-
-		vel.y = oldVelY;
-		if (Input.GetButtonDown("Jump") && IsGrounded)
-			vel.y += 12 * Time.deltaTime;
-
-		transform.position += vel;
-	}*/
-
 	void Update()
 	{
 		float speed = 0.0f;
 		Vector3 moveDir = GetMoveDirection(ref speed);
 		RotateMesh(moveDir, speed);
 		speed *= moveSpeed;
-		//animator.SetFloat("Speed", speed);
+		animator.SetFloat("Speed", speed);
 
 		float lastVelY = vel.y;
-		vel = transform.forward * speed;
+		vel = rotateMesh.forward * speed;
 		vel = Vector3.ClampMagnitude(vel, maxVel);
 		vel.y = lastVelY;
 
 		if (Input.GetButton("Jump") && IsGrounded && jumpKeyUp)
 		{
-			//animator.SetTrigger("Jump");
+			animator.SetTrigger("Jump");
 			vel.y = jumpSpeed;
 			jumpKeyUp = false;
 		}
@@ -93,12 +80,12 @@ public class PlayerController : MonoBehaviour
 
 	void RotateMesh(Vector3 moveDir, float speed)
 	{
-		if (Vector3.Angle(moveDir, transform.forward) > 135)        // if the difference is above a certain angle,
-			transform.forward = moveDir;                            // we'll want to snap right to it, instead of lerping
+		if (Vector3.Angle(moveDir, rotateMesh.forward) > 135)        // if the difference is above a certain angle,
+			rotateMesh.forward = moveDir;                            // we'll want to snap right to it, instead of lerping
 		else
 		{
-			Vector3 targetRotation = Vector3.Lerp(transform.forward, moveDir, Time.deltaTime * rotSmooth);
-			if (targetRotation != Vector3.zero) transform.rotation = Quaternion.LookRotation(targetRotation);
+			Vector3 targetRotation = Vector3.Lerp(rotateMesh.forward, moveDir, Time.deltaTime * rotSmooth);
+			if (targetRotation != Vector3.zero) rotateMesh.rotation = Quaternion.LookRotation(targetRotation);
 		}
 	}
 
