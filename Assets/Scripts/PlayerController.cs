@@ -49,6 +49,12 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+		if (Time.deltaTime > 0.1f)
+		{
+			print("player skip this frame");
+			return;
+		}
+
 		float speed = 0;
 		Vector3 moveDir = GetMoveDirection(ref speed);
 		
