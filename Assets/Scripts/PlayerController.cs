@@ -165,14 +165,4 @@ public class PlayerController : MonoBehaviour
 
 	public Vector3 GetVel { get { return vel; } }
 	public PlayerCollider GetCol { get { return col; } }
-
-	void OnEnable()
-	{
-		print("script was enabled");
-	}
-
-	void OnDisable()
-	{
-		print("script was disabled");
-	}
 }
