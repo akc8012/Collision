@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Animator animator;
 
 	Vector3 vel = Vector3.zero;
-	[SerializeField] float moveSpeed = 10;		// what to increment velocity by
-	[SerializeField] float maxVel = 5;			// maximum velocity in any direction
+	[SerializeField] float maxSpeed = 10;		// what to increment velocity by
+	float maxVel = 5;			// maximum velocity in any direction
 	float rotSmooth = 20;		// smoothing on the lerp to rotate towards stick direction
 	float rotSmoothSlow = 5;       // smoothing on the lerp to rotate towards stick direction
 	[SerializeField] float gravity = 35;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Time.deltaTime > 0.1f)
 		{
-			print("player skip this frame");
+			//print("player skip this frame");
 			return;
 		}
 
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator Jump()
 	{
-		float valueBasedOnRunningJumpSpeed = Mathf.Clamp((speedJumpedAt / moveSpeed) + 0.4f, 0.9f, 1.14f);
+		float valueBasedOnRunningJumpSpeed = Mathf.Clamp((speedJumpedAt / maxSpeed) + 0.4f, 0.9f, 1.14f);
 		while (true)
 		{
 			vel.y += currJumpSpeed * valueBasedOnRunningJumpSpeed;
@@ -134,15 +134,15 @@ public class PlayerController : MonoBehaviour
 	void SpeedUp(ref float speed)
 	{
 		float speedClamp = speed;
-		float airClamp = (IsGrounded ? 1 : (speedJumpedAt / moveSpeed) + 0.2f);
+		float airClamp = (IsGrounded ? 1 : (speedJumpedAt / maxSpeed) + 0.2f);
 		speed = lastSpeed + acceleration;
-		speed = Mathf.Clamp(speed, 0, moveSpeed * speedClamp * airClamp);
+		speed = Mathf.Clamp(speed, 0, maxSpeed * speedClamp * airClamp);
 	}
 
 	void SlowDown(ref float speed)
 	{
 		speed = lastSpeed - deceleration;
-		speed = Mathf.Clamp(speed, 0, moveSpeed);
+		speed = Mathf.Clamp(speed, 0, maxSpeed);
 	}
 
 	void RotateMesh(Vector3 moveDir)
@@ -165,4 +165,19 @@ public class PlayerController : MonoBehaviour
 
 	public Vector3 GetVel { get { return vel; } }
 	public PlayerCollider GetCol { get { return col; } }
+
+	void OnEnable()
+	{
+		
+	}
+
+	void OnDisable()
+	{
+		vel = Vector3.zero;
+	}
+
+	public void SetVelFromBall(Vector3 ballVel)
+	{
+		vel = ballVel;
+	}
 }

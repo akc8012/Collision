@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody 
 		rb;
 
-	[SerializeField]
+		[SerializeField]
 	int 
 		speed = 1000,
 		maxVelocity = 20,
@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector3 Movement{get{ return movement; }set{ movement = value;}}
 
+	public Vector3 GetVel { get { return rb ? rb.velocity : Vector3.zero; } }
+	public int GetMaxVel { get { return maxVelocity; } }
+
 	void Start () 
 	{
 		rb = GetComponent<Rigidbody> ();
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 	// called before rendering a frame
 	void Update () 
 	{
-	
+		
 	}
 
 	public void ToggleControls(bool check)
@@ -129,6 +132,29 @@ public class PlayerController : MonoBehaviour {
 				rb.velocity *= playerSlowdownSpeed;
 		} else if (!jumping) {
 			rb.mass = 1;
+		}
+	}
+
+	void OnEnable()
+	{
+		
+	}
+
+	void OnDisable()
+	{
+		if (rb)
+		{
+			rb.velocity = Vector3.zero;
+			rb.angularVelocity = Vector3.zero;
+		}
+	}
+
+	public void SetVelFromPlayer(Vector3 playerVel)
+	{
+		if (rb)
+		{
+			rb.angularVelocity = playerVel;
+			rb.velocity = playerVel;
 		}
 	}
 }

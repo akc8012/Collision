@@ -28,7 +28,7 @@ public class SwitchyManager : MonoBehaviour
 		
 		float currentAxis = Input.GetAxisRaw("BallToggle");
 
-		if (currentAxis != lastAxis)
+		if (currentAxis != lastAxis && (currentAxis == 0 || currentAxis == -1))
 			Switch(state == 0 ? 1 : 0);
 
 		lastAxis = currentAxis;
@@ -40,6 +40,7 @@ public class SwitchyManager : MonoBehaviour
 		if (which == 0)
 		{
 			player.transform.position = playerBall.transform.position;
+			player.GetComponent<PlayerController>().SetVelFromBall(playerBall.GetComponent<TristanBall.PlayerController>().GetVel);
 			player.SetActive(true);
 			playerBall.SetActive(false);
 			mainCam.enabled = true;
@@ -48,6 +49,7 @@ public class SwitchyManager : MonoBehaviour
 		else
 		{
 			playerBall.transform.position = player.transform.position;
+			playerBall.GetComponent<TristanBall.PlayerController>().SetVelFromPlayer(player.GetComponent<PlayerController>().GetVel);
 			player.SetActive(false);
 			playerBall.SetActive(true);
 			mainCam.enabled = false;
