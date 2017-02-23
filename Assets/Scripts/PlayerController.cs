@@ -16,13 +16,15 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float moveSpeed = 10;		// what to increment velocity by
 	[SerializeField] float maxVel = 5;			// maximum velocity in any direction
 	float rotSmooth = 20;		// smoothing on the lerp to rotate towards stick direction
+	float rotSmoothSlow = 5;       // smoothing on the lerp to rotate towards stick direction
 	[SerializeField] float gravity = 35;
 	[SerializeField] float jumpSpeed = 10.5f;
 	[SerializeField] bool doAnimations = true;
 
 	float lastSpeed = 0;
-	float acceleration = 0.3f;
+	float acceleration = 0.2f;
 	float deceleration = 1.5f;
+	float speedJumpedAt;
 
 	const float jumpDetraction = 0.25f;
 	const float fallDownFast = 0.90f;
@@ -66,6 +68,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown("Jump") && IsGrounded)
 		{
 			if (doAnimations) animator.SetTrigger("Jump");
+			speedJumpedAt = speed;
 			StartCoroutine("Jump");
 		}
 
@@ -88,9 +91,10 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator Jump()
 	{
+		float valueBasedOnRunningJumpSpeed = Mathf.Clamp((speedJumpedAt / moveSpeed) + 0.4f, 0.9f, 1.14f);
 		while (true)
 		{
-			vel.y += currJumpSpeed;
+			vel.y += currJumpSpeed * valueBasedOnRunningJumpSpeed;
 			currJumpSpeed *= jumpDetraction;
 			yield return null;
 		}
@@ -120,8 +124,9 @@ public class PlayerController : MonoBehaviour
 	void SpeedUp(ref float speed)
 	{
 		float speedClamp = speed;
+		float airClamp = (IsGrounded ? 1 : (speedJumpedAt / moveSpeed) + 0.2f);
 		speed = lastSpeed + acceleration;
-		speed = Mathf.Clamp(speed, 0, moveSpeed*speedClamp);
+		speed = Mathf.Clamp(speed, 0, moveSpeed * speedClamp * airClamp);
 	}
 
 	void SlowDown(ref float speed)
@@ -137,11 +142,12 @@ public class PlayerController : MonoBehaviour
 		//if (angle > 15 && angle != 90)
 		//	return;
 
-		if (angle > 135)        // if the difference is above a certain angle,
-			rotateMesh.forward = moveDir;							 // we'll want to snap right to it, instead of lerping
+		if (angle > 135)        // if we're a very big angle change, we'll want to snap right to it, instead of lerping
+			rotateMesh.forward = moveDir;
 		else
 		{
-			Vector3 targetRotation = Vector3.Lerp(rotateMesh.forward, moveDir, Time.deltaTime * rotSmooth);
+			Vector3 targetRotation = Vector3.Lerp(rotateMesh.forward, moveDir,
+				Time.deltaTime * (IsGrounded ? rotSmooth : rotSmoothSlow));
 			if (targetRotation != Vector3.zero)
 				rotateMesh.rotation = Quaternion.LookRotation(targetRotation);
 		}
