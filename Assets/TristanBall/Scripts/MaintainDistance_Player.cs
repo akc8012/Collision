@@ -16,14 +16,13 @@ public class MaintainDistance_Player : MonoBehaviour {
 
 	void Start () 
 	{
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.FindWithTag ("PlayerBall");
 		offset = transform.localPosition - player.transform.localPosition;
 	}
 
 	// runs every frame, but after all items have been processed.
 	void LateUpdate () 
 	{
-		player = GameObject.FindWithTag ("Player");
 		transform.localPosition = player.transform.localPosition + offset;
 	}
 }

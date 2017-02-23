@@ -23,7 +23,7 @@ public class CameraDistanceToPlayer : MonoBehaviour {
 
 	void Start () 
 	{
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.FindWithTag ("PlayerBall");
 		transform.Translate (Vector3.right * rotationSpeed * Time.deltaTime);
 		transform.LookAt (player.transform);
 		offset = transform.localPosition - player.transform.localPosition;
@@ -31,7 +31,6 @@ public class CameraDistanceToPlayer : MonoBehaviour {
 
 	void Update () 
 	{
-		player = GameObject.FindWithTag ("Player");
 		transform.localPosition = player.transform.localPosition + offset;
 
 		float horizMovement = Input.GetAxis ("altHorizontal");

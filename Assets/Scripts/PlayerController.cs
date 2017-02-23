@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 	bool isGrounded = false;
 	public bool IsGrounded { get { return isGrounded; } }
 	public bool IsRising { get { return vel.y > 0; } }
+	bool collisionActive = true;
+	public bool CollisionActive { get { return collisionActive; } }
 
 	public delegate void OnFloor();
 
@@ -54,6 +56,8 @@ public class PlayerController : MonoBehaviour
 			print("player skip this frame");
 			return;
 		}
+
+		if (!CollisionActive) return;
 
 		float speed = 0;
 		Vector3 moveDir = GetMoveDirection(ref speed);
@@ -161,4 +165,14 @@ public class PlayerController : MonoBehaviour
 
 	public Vector3 GetVel { get { return vel; } }
 	public PlayerCollider GetCol { get { return col; } }
+
+	void OnEnable()
+	{
+		print("script was enabled");
+	}
+
+	void OnDisable()
+	{
+		print("script was disabled");
+	}
 }

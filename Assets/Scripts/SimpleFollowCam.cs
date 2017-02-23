@@ -9,7 +9,7 @@ public class SimpleFollowCam : MonoBehaviour
 	[SerializeField] float yoffset;
 	[SerializeField] float followSpeed;
 
-	void Awake()
+	void Start()
 	{
 		player = GameObject.FindWithTag("Player").transform;
 	}

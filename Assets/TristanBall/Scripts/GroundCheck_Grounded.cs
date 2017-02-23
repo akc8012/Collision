@@ -15,20 +15,13 @@ public class GroundCheck_Grounded : MonoBehaviour {
 
 	void Start () 
 	{
-		
-	}
-
-	void Update () 
-	{
-		player = GameObject.FindWithTag ("Player");
+		player = GameObject.FindWithTag ("PlayerBall");
 	}
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Ramp") {
 			player.GetComponent<PlayerController> ().IsJumping (false);
 		}
-
-		print("enter");
 	}
 
 	void OnTriggerStay(Collider col)
@@ -42,8 +35,6 @@ public class GroundCheck_Grounded : MonoBehaviour {
 				player.GetComponent<PlayerController> ().ToggleControls (false);
 			}
 		}
-
-		print("stay");
 	}
 
 	void OnTriggerExit(Collider col)
