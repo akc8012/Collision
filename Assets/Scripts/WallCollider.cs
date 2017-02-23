@@ -21,10 +21,6 @@ public class WallCollider : MonoBehaviour
 	IsPositioned isPositioned;
 	GetPos getPos;
 
-	// debug stuff
-	[SerializeField] Transform minT;
-	[SerializeField] Transform maxT;
-
 	void Awake()
 	{
 		transform.position += -transform.forward * cornerSize;
@@ -165,18 +161,6 @@ public class WallCollider : MonoBehaviour
 		float min = transform.position.x - (transform.lossyScale.x/2 * weirdShit);
 		float max = transform.position.x + (transform.lossyScale.x/2 * weirdShit);
 		bool xWithin = (player.GetMax.x > min) && (player.GetMin.x < max);
-
-		if (minT && maxT && Time.frameCount % 2 == 0)
-		{
-			Vector3 minPos = transform.position;
-			Vector3 maxPos = transform.position;
-
-			minPos.x = min;
-			maxPos.x = max;
-
-			minT.position = minPos;
-			maxT.position = maxPos;
-		}
 
 		min = transform.position.z - (transform.lossyScale.y/2 * weirdShit);
 		max = transform.position.z + (transform.lossyScale.y/2 * weirdShit);
