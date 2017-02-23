@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	float rotSmooth = 20;		// smoothing on the lerp to rotate towards stick direction
 	[SerializeField] float gravity = 35;
 	[SerializeField] float jumpSpeed = 10.5f;
+	[SerializeField] bool doAnimations = true;
 
 	float lastSpeed = 0;
 	float acceleration = 0.3f;
@@ -49,13 +50,13 @@ public class PlayerController : MonoBehaviour
 		float speed = 0;
 		Vector3 moveDir = GetMoveDirection(ref speed);
 		
-		if (speed != 0)
+		if (speed > 0.19f)		// greater than deadzone
 			SpeedUp(ref speed);
 		else
 			SlowDown(ref speed);
 
-		RotateMesh(moveDir, speed);
-		animator.SetFloat("Speed", speed);
+		RotateMesh(moveDir);
+		if (doAnimations) animator.SetFloat("Speed", speed);
 
 		float lastVelY = vel.y;
 		vel = rotateMesh.forward * speed;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump") && IsGrounded)
 		{
-			animator.SetTrigger("Jump");
+			if (doAnimations) animator.SetTrigger("Jump");
 			StartCoroutine("Jump");
 		}
 
@@ -118,8 +119,9 @@ public class PlayerController : MonoBehaviour
 
 	void SpeedUp(ref float speed)
 	{
+		float speedClamp = speed;
 		speed = lastSpeed + acceleration;
-		speed = Mathf.Clamp(speed, 0, moveSpeed);
+		speed = Mathf.Clamp(speed, 0, moveSpeed*speedClamp);
 	}
 
 	void SlowDown(ref float speed)
@@ -128,9 +130,14 @@ public class PlayerController : MonoBehaviour
 		speed = Mathf.Clamp(speed, 0, moveSpeed);
 	}
 
-	void RotateMesh(Vector3 moveDir, float speed)
+	void RotateMesh(Vector3 moveDir)
 	{
-		if (Vector3.Angle(moveDir, rotateMesh.forward) > 135)        // if the difference is above a certain angle,
+		float angle = Vector3.Angle(moveDir, rotateMesh.forward);
+
+		//if (angle > 15 && angle != 90)
+		//	return;
+
+		if (angle > 135)        // if the difference is above a certain angle,
 			rotateMesh.forward = moveDir;							 // we'll want to snap right to it, instead of lerping
 		else
 		{

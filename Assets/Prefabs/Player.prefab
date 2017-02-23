@@ -56,7 +56,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1054825829488282
 GameObject:
   m_ObjectHideFlags: 1
@@ -1511,6 +1511,7 @@ MonoBehaviour:
   maxVel: 5
   gravity: 35
   jumpSpeed: 10
+  doAnimations: 0
 --- !u!137 &137168506861059934
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
