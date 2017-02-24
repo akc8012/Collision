@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] bool doAnimations = true;
 
 	float lastSpeed = 0;
+	public float Speed { get { return lastSpeed; } }
 	float acceleration = 0.2f;
 	float deceleration = 1.5f;
 	float speedJumpedAt;
