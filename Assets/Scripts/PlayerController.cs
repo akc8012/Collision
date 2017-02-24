@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
 	Text displayText;
 
 	PlayerCollider col;
+	PlayerTerrainCollider terrainCol;
 	Transform cam;
 	[SerializeField] Transform rotateMesh;
 	[SerializeField] Animator animator;
+	[SerializeField] Transform bottom;
 
 	Vector3 vel = Vector3.zero;
 	[SerializeField] float maxSpeed = 10;		// what to increment velocity by
@@ -40,13 +42,23 @@ public class PlayerController : MonoBehaviour
 	void Awake()
 	{
 		cam = GameObject.FindWithTag("MainCamera").transform;
-		displayText = GameObject.Find("Text").GetComponent<Text>();
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 60;
 
 		col = new PlayerCollider();
 		col.Init(transform, onFloor);
 		currJumpSpeed = jumpSpeed;
+
+		terrainCol = new PlayerTerrainCollider();
+		terrainCol.Init(transform, bottom);
+
+		if (GameObject.Find("Text"))
+			displayText = GameObject.Find("Text").GetComponent<Text>();
+	}
+
+	void Start()
+	{
+		DownRay();
 	}
 
 	void Update()
@@ -96,7 +108,11 @@ public class PlayerController : MonoBehaviour
 		isGrounded = false;
 		lastSpeed = speed;
 
-		displayText.text = speed+"";
+		if (!IsRising && DownRay())
+			SnapToTerrainFloor();
+
+		if (displayText)
+			displayText.text = speed+"";
 	}
 
 	IEnumerator Jump()
@@ -165,6 +181,29 @@ public class PlayerController : MonoBehaviour
 
 	public Vector3 GetVel { get { return vel; } }
 	public PlayerCollider GetCol { get { return col; } }
+
+	bool DownRay()
+	{
+		RaycastHit hitMan;
+		Ray rayMan = new Ray(bottom.position, Vector3.down);
+		if (Physics.Raycast(rayMan, out hitMan, 20))
+		{
+			Terrain foundTerrain = hitMan.collider.gameObject.GetComponent<Terrain>();
+
+			if (foundTerrain && foundTerrain != terrainCol.CurrentTerrain)
+			{
+				terrainCol.SetTerrain(foundTerrain);
+			}
+		}
+
+		return terrainCol.CurrentTerrain && terrainCol.IsAcceptableDistance;
+	}
+
+	void SnapToTerrainFloor()
+	{
+		terrainCol.CustomUpdate();
+		onFloor();
+	}
 
 	void OnEnable()
 	{
