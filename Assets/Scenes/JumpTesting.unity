@@ -730,7 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWall: 0
   cornerSize: 0
-  snapLeniency: 1
+  snapLeniency: 0.2
   updateSelf: 1
 --- !u!1 &977852417
 GameObject:
@@ -998,7 +998,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4902269725415566, guid: 70f09fcb842fdb14590c18dea3850643, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 6.16
       objectReference: {fileID: 0}
     - target: {fileID: 4902269725415566, guid: 70f09fcb842fdb14590c18dea3850643, type: 2}
       propertyPath: m_LocalPosition.z

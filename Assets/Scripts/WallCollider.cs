@@ -105,6 +105,10 @@ public class WallCollider : MonoBehaviour
 
 	public void CustomLateUpdate()
 	{
+		float velY = GameObject.Find("Player").GetComponent<PlayerController>().GetVel.y;
+		velY = -velY * 0.1f;
+		snapLeniency = Mathf.Clamp(velY, 0.2f, float.MaxValue);
+
 		if (transform.rotation != lastRotation) UpdateRotation();
 		lastRotation = transform.rotation;
 
