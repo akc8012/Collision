@@ -1685,9 +1685,11 @@ MonoBehaviour:
   freeThreshhold: -0.1
   rightStickThreshhold: 0.1
   freeRotationDegreePerSecond: -5
-  playerObj: {fileID: 0}
+  playerObj: {fileID: 1230884051307996}
   parentRig: {fileID: 1706350440612452}
   camMinDistanceFromCharacter: {x: 1, y: -0.5}
+  invertX: 0
+  invertY: 0
 --- !u!114 &114389810423968292
 MonoBehaviour:
   m_ObjectHideFlags: 1

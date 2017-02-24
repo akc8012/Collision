@@ -13,28 +13,15 @@ public class Camera_Control2 : MonoBehaviour {
 
 	public float
 	distanceAway,
-	distanceAwayMultiplier = 1.5f,
-	distanceUp,
-	distanceUpMultiplier = 1.5f,
-	distanceSide,
-	smooth,
-	lookDirDampTime = 0.1f,
-	camSmoothDampTime = 0.1f,
-	freeThreshhold = -0.1f,
-	rightStickThreshhold = 0.1f,
-	freeRotationDegreePerSecond = -5f;
+	distanceUp;
 
 	float
-	//leftX,
-	//leftY,
 	rightX,
-	rightY,
-	distanceAwayFree,
-	distanceUpFree,
-	cameraRotationAdjust;
+	rightY;
 
-	Transform 
-	follow;
+	Transform
+	follow,
+	rotateMesh;
 
 	public GameObject
 	playerObj,
@@ -48,15 +35,8 @@ public class Camera_Control2 : MonoBehaviour {
 
 	Vector3
 	targetPosition,
-	//lookDir,
-	curLookDir,
-	//velocityCamSmooth = Vector3.zero,
-	velocityLookDir = Vector3.zero;
-	//savedRigToGoal;
-
-	//float lookWeight = 0;
-
-
+	curLookDir;
+	
 	[SerializeField] bool invertX;
 	[SerializeField] bool invertY;
 
@@ -72,6 +52,7 @@ public class Camera_Control2 : MonoBehaviour {
 	void Start () {
 
 		follow = GameObject.Find ("Follow").transform;
+		rotateMesh = GameObject.Find("RotateMesh").transform;
 
 		curLookDir = follow.forward;
 
@@ -139,17 +120,15 @@ public class Camera_Control2 : MonoBehaviour {
 
 		}
 
+
+		follow.rotation = Quaternion.Euler(0, rightStickPrevFrame.x, 0);
+
 		switch (camState) {
 
 		case CameraStates.TARGET:
-
-			if (playerObj.GetComponent<PlayerController> ().Speed > 0) {
 				
-				curLookDir = Vector3.Normalize (characterOffset - this.transform.position);
-				curLookDir.y = 0;
-
-				curLookDir = Vector3.SmoothDamp (curLookDir, Vector3.zero, ref velocityLookDir, lookDirDampTime);
-			}
+			curLookDir = Vector3.Normalize (characterOffset - this.transform.position);
+			curLookDir.y = 0;
 
 			targetPosition = (characterOffset + follow.up * distanceUp) - (Vector3.Normalize (curLookDir) * distanceAway);
 
@@ -157,7 +136,7 @@ public class Camera_Control2 : MonoBehaviour {
 
 		case CameraStates.BEHIND:
 
-			curLookDir = follow.parent.transform.forward;
+			curLookDir = rotateMesh.transform.forward;//follow.parent.transform.forward;
 			curLookDir.y = 0;
 
 			targetPosition = (characterOffset + follow.up * distanceUp) - (Vector3.Normalize (curLookDir) * distanceAway);
@@ -176,7 +155,6 @@ public class Camera_Control2 : MonoBehaviour {
 
 		transform.LookAt (playerObj.transform);
 
-		follow.rotation = Quaternion.Euler(0,rightStickPrevFrame.x,0);
 
 	}
 
@@ -194,7 +172,6 @@ public class Camera_Control2 : MonoBehaviour {
 			directionToPlayer.Normalize ();
 
 			toTarget -= directionToPlayer * 0.4f;
-
 		}
 	}
 }
