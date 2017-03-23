@@ -6,8 +6,8 @@ public class SwitchyManager : MonoBehaviour
 {
 	GameObject player;
 	GameObject playerBall;
-	SimpleFollowCam mainCam;
-	TristanBall.CameraDistanceToPlayer ballCam;
+	GameObject mainCam;
+	GameObject ballCam;
 	int state = 0;
 	float lastAxis;
 
@@ -15,8 +15,8 @@ public class SwitchyManager : MonoBehaviour
 	{
 		player = GameObject.FindWithTag("Player");
 		playerBall = GameObject.FindWithTag("PlayerBall");
-		mainCam = Camera.main.gameObject.GetComponent<SimpleFollowCam>();
-		ballCam = Camera.main.gameObject.GetComponent<TristanBall.CameraDistanceToPlayer>();
+		mainCam = GameObject.Find("Player Camera2");
+		ballCam = GameObject.Find("BallCam");
 
 		Switch(state);
 	}
@@ -39,21 +39,22 @@ public class SwitchyManager : MonoBehaviour
 		state = which;
 		if (which == 0)
 		{
-			player.transform.position = playerBall.transform.position;
-			player.GetComponent<PlayerController>().SetVelFromBall(playerBall.GetComponent<TristanBall.PlayerController>().GetVel);
+			Vector3 pos = playerBall.transform.position;
+			pos.y += 0.5f;
+			player.transform.position = pos;
 			player.SetActive(true);
 			playerBall.SetActive(false);
-			mainCam.enabled = true;
-			ballCam.enabled = false;
+			mainCam.SetActive(true);
+			ballCam.SetActive(false);
 		}
 		else
 		{
 			playerBall.transform.position = player.transform.position;
-			playerBall.GetComponent<TristanBall.PlayerController>().SetVelFromPlayer(player.GetComponent<PlayerController>().GetVel);
 			player.SetActive(false);
 			playerBall.SetActive(true);
-			mainCam.enabled = false;
-			ballCam.enabled = true;
+			mainCam.SetActive(false);
+			ballCam.SetActive(true);
+			ballCam.GetComponent<DirectFollowCam>().ReInit(mainCam.transform.position, mainCam.transform.rotation);
 		}
 	}
 }
